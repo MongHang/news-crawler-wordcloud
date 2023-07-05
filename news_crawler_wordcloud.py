@@ -70,12 +70,12 @@ for c in classes:
 
 newsdf = pd.DataFrame({"標題": datas})
 
-# 載入2套stopword辭典，增加切片精準?
+# 載入jieba中文詞庫
 url = r'https://raw.githubusercontent.com/fxsjy/jieba/master/extra_dict/dict.txt.big'
 response = requests.get(url)
 with open ('dict.txt.big', 'w', encoding='utf-8') as f:
     f.write(response.text)
-
+# 載入stopword，過濾較無意義的詞句
 url = r'https://raw.githubusercontent.com/goto456/stopwords/master/baidu_stopwords.txt'
 response = requests.get(url)
 # StringIO模組主要用於在記憶體緩衝區中讀寫資料，讀寫較快(短時間的重複利用，不用存很久的資料可使用)
@@ -86,7 +86,7 @@ def _jieba_cut_words(s):
     cut_words = jieba.cut(s, cut_all=False)
     result = []
     for word in cut_words:
-        word = word.strip()# len(word) > 1是為了篩選有意義的詞彙
+        word = word.strip() # len(word) > 1是為了篩選有意義的詞彙
         if len(word) > 1 and word not in stopwords:
             result += [word]
     return ' '.join(result)
@@ -104,7 +104,7 @@ def cleansing(data):
     return cut_words
 
 dict_path = 'dict.txt.big'
-
+# 設定jiieba辭典
 jieba.set_dictionary(dict_path) # 在0.28之前不能指定主辭典的路徑，有了延遲加載機制後，可以改變主辭典的路徑
 jieba.initialize() # 手動初始化(可選)
 
