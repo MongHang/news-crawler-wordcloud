@@ -70,12 +70,12 @@ for c in classes:
 
 newsdf = pd.DataFrame({"標題": datas})
 
-# 載入jieba中文詞庫
+# 載入jieba中文切片辭典
 url = r'https://raw.githubusercontent.com/fxsjy/jieba/master/extra_dict/dict.txt.big'
 response = requests.get(url)
 with open ('dict.txt.big', 'w', encoding='utf-8') as f:
     f.write(response.text)
-# 載入stopword，過濾較無意義的詞句
+# 載入過濾辭典，過濾較無意義的詞句
 url = r'https://raw.githubusercontent.com/goto456/stopwords/master/baidu_stopwords.txt'
 response = requests.get(url)
 # StringIO模組主要用於在記憶體緩衝區中讀寫資料，讀寫較快(短時間的重複利用，不用存很久的資料可使用)
