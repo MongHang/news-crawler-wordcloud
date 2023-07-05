@@ -1,1 +1,1 @@
-# news_crawler_wordcloud
+# news-crawler-wordcloud
