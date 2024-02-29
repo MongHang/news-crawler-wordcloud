@@ -32,8 +32,9 @@ def checkBottom():
 url = "https://tw.news.yahoo.com/"
 
 opt = Options()
-opt.add_argument('--headless') # 啟動無頭模式
-opt.add_argument('--disable-gpu') # 關gpu，省電
+opt.add_argument('--headless')  # 啟動無視窗模式
+opt.add_argument('--disable-gpu')  # 關gpu，省電
+
 
 driver = webdriver.Chrome(options=opt)
 driver.get(url)
